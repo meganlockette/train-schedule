@@ -56,10 +56,7 @@ console.log(remainder);
 console.log(minutes);
 console.log(arrival);
 
-// $(window).load(function(){
-//   // Initiate moment here and console.log it
-//   console.log( moment() );
-// });
+
 
 $("#trainTable > tbody").append("<tr><td>"+name+"</td><td>"+destination+"</td><td>"+frequency+"</td><td>"+arrival+"</td><td>"+minutes+"</td></tr>");
 
