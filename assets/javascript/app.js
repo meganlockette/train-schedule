@@ -19,7 +19,7 @@ $("#btn-add").on("click", function(){
 
 var trainName = $("#train-name").val().trim();
 var trainDestination = $("#train-destination").val().trim();
-var trainTime = moment($("#train-time").val().trim(), "HH:mm").subtract(10, "years").format("X");
+var trainTime = moment($("#train-time").val().trim(), "HH:mm").format('LT');
 var trainFrequency = $("#time-freq").val().trim();
 
 var newTrain = {
@@ -28,7 +28,7 @@ var newTrain = {
     time: trainTime,
     frequency: trainFrequency
 }
-
+console.log(newTrain);
 trainData.ref().push(newTrain);
 
 alert("New Train Added!");
@@ -45,7 +45,7 @@ return false;
 trainData.ref().on("child_added",function(snapshot){
 var name = snapshot.val().name;
 var destination = snapshot.val().destination;
-var time = snapshot.val().time;
+var trainTime = snapshot.val().time;
 var frequency = snapshot.val().frequency;
 
 var remainder = moment().diff(moment.unix(trainTime),"minutes")%frequency; 
@@ -56,6 +56,13 @@ console.log(remainder);
 console.log(minutes);
 console.log(arrival);
 
+// $(window).load(function(){
+//   // Initiate moment here and console.log it
+//   console.log( moment() );
+// });
+
 $("#trainTable > tbody").append("<tr><td>"+name+"</td><td>"+destination+"</td><td>"+frequency+"</td><td>"+arrival+"</td><td>"+minutes+"</td></tr>");
 
 });
+
+
